@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>対人関係スタイル分析</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #121212; color: #ffffff; text-align: center; padding: 20px; }
+        h2 { font-size: 24px; }
+        p { font-size: 16px; }
+        .question-container { max-width: 600px; margin: 0 auto; background: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); }
+        .question { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .options { display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .options label { background: #333; padding: 10px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .options input { display: none; }
+        .options label:hover, .options input:checked + label { background: #6200ea; }
+        button { background: #6200ea; color: #fff; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; transition: 0.3s; }
+        button:hover { background: #3700b3; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <h2>対人関係スタイル分析</h2>
+    <p>いくつかの質問が対になって示されています。それぞれの対について4つの〇の中から、あなたに最も当てはまると思われる〇を選択してください。全38問について選択してください。</p>
+    <div class="question-container" id="questions"></div>
+    <button onclick="calculateScores()">スコア計算</button>
+    <div id="results" class="hidden">
+        <h3>スコア結果</h3>
+        <p>aの合計: <span id="scoreA">0</span></p>
+        <p>bの合計: <span id="scoreB">0</span></p>
+    </div>
+    
+    <script>
+        const questions = [
+            { id: 1, text1: "指揮を取る", text2: "追従する", group: "a", dummy: false },
+            { id: 2, text1: "のびのびしている", text2: "制御する", group: "b", dummy: false },
+            { id: 3, text1: "積極的", text2: "消極的", group: "a", dummy: false },
+            { id: 4, text1: "現実的", text2: "理想的", group: "b", dummy: false },
+            { id: 5, text1: "競争的", text2: "協調的", group: "a", dummy: false },
+            { id: 6, text1: "直感的", text2: "分析的", group: "b", dummy: false },
+            { id: 7, text1: "柔軟性がある", text2: "慎重である", group: "a", dummy: false },
+            { id: 8, text1: "感情を表に出す", text2: "冷静である", group: "b", dummy: false },
+            { id: 9, text1: "支配的", text2: "従順", group: "a", dummy: false },
+            { id: 10, text1: "率直", text2: "控えめ", group: "b", dummy: false }
+            // 38問まで追加する
+        ];
+
+        const questionContainer = document.getElementById("questions");
+        questions.forEach(q => {
+            const div = document.createElement("div");
+            div.classList.add("question");
+            div.innerHTML = `
+                <span>${q.id}. ${q.text1}</span>
+                <div class="options">
+                    <input type="radio" id="q${q.id}_1" name="q${q.id}" value="1"><label for="q${q.id}_1">1</label>
+                    <input type="radio" id="q${q.id}_2" name="q${q.id}" value="2"><label for="q${q.id}_2">2</label>
+                    <input type="radio" id="q${q.id}_3" name="q${q.id}" value="3"><label for="q${q.id}_3">3</label>
+                    <input type="radio" id="q${q.id}_4" name="q${q.id}" value="4"><label for="q${q.id}_4">4</label>
+                </div>
+                <span>${q.text2}</span>
+            `;
+            questionContainer.appendChild(div);
+            { id: 29, text1: "目標志向", text2: "過程重視", group: "a", dummy: false },
+            { id: 30, text1: "感情表現豊か", text2: "冷静沈着", group: "b", dummy: false },
+            { id: 31, text1: "競争を好む", text2: "協調を重視", group: "a", dummy: false },
+            { id: 32, text1: "決断が早い", text2: "慎重に検討", group: "b", dummy: false },
+            { id: 33, text1: "強い意志", text2: "柔軟な適応", group: "a", dummy: false },
+            { id: 34, text1: "率直な発言", text2: "控えめな発言", group: "b", dummy: false },
+            { id: 35, text1: "責任を持つ", text2: "助言を求める", group: "a", dummy: false },
+            { id: 36, text1: "リスクを取る", text2: "リスクを避ける", group: "b", dummy: false },
+            { id: 37, text1: "行動第一", text2: "熟考第一", group: "a", dummy: false },
+            { id: 38, text1: "革新を好む", text2: "伝統を守る", group: "b", dummy: false }
+        ];
+
+        const questionContainer = document.getElementById("questions");
+        questions.forEach(q => {
+            const div = document.createElement("div");
+            div.classList.add("question");
+            div.innerHTML = `
+                <div class="options">
+                    <span>${q.id}. ${q.text1}</span>
+                    <label><input type="radio" name="q${q.id}" value="1"> 1</label>
+                    <label><input type="radio" name="q${q.id}" value="2"> 2</label>
+                    <label><input type="radio" name="q${q.id}" value="3"> 3</label>
+                    <label><input type="radio" name="q${q.id}" value="4"> 4</label>
+                    <span>${q.text2}</span>
+                </div>
+            `;
+            questionContainer.appendChild(div);
+        });
+    </script>
+</body>
+</html>
